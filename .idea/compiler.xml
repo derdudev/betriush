@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="betriush" target="19" />
+      <module name="betriush" target="18" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
