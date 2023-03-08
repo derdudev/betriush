@@ -1,60 +1,66 @@
 package com.sexydari.betriush;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document("bettingcards")
+@Document("betting-cards")
 public class BettingCard {
     @Id
-    private int id;
+    @JsonSerialize(using = ToStringSerializer.class) // see: https://github.com/MaBeuLux88/java-spring-boot-mongodb-starter/blob/master/src/main/java/com/mongodb/starter/models/Person.java#L16-L17
+    private ObjectId id;
 
-    private int masterId;
+    @JsonSerialize(using = ToStringSerializer.class)
+    private ObjectId masterId;
 
     private String title;
 
     private String description;
 
-    private ArrayList BettingOptions;
+    private List<BettingOption> bettingOptions;
 
     private boolean active;
 
-    private String time;
+    private String dueDate;
 
     private boolean repeating;
 
-    private ArrayList Tags;
+    private List<String> tags;
 
 
-    public BettingCard(int id, int masterId, String title, String description, ArrayList BettingOptions, boolean active,
-                       String time, boolean repeating, ArrayList Tags){
+    public BettingCard(ObjectId id, ObjectId masterId, String title, String description, List<BettingOption> bettingOptions, boolean active,
+                       String dueDate, boolean repeating, List<String> tags){
         this.id= id;
         this.masterId= masterId;
         this.title= title;
         this.description= description;
-        this.BettingOptions= BettingOptions;
+        this.bettingOptions = bettingOptions;
         this.active = active;
-        this.time= time;
+        this.dueDate = dueDate;
         this.repeating = repeating;
-        this.Tags= Tags;
+        this.tags = tags;
 
     }
 
-    public int getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
-    public int getMasterId() {
+    public ObjectId getMasterId() {
         return masterId;
     }
 
-    public void setMasterId(int masterId) {
+    public void setMasterId(ObjectId masterId) {
         this.masterId = masterId;
     }
 
@@ -74,14 +80,13 @@ public class BettingCard {
         this.description = description;
     }
 
-    public ArrayList getBettingOptions() {
-        return BettingOptions;
+    public List<BettingOption> getBettingOptions() {
+        return bettingOptions;
     }
 
-    public void setBettingOptions(ArrayList bettingOptions) {
-        BettingOptions = bettingOptions;
+    public void setBettingOptions(List<BettingOption> bettingOptions) {
+        this.bettingOptions = bettingOptions;
     }
-
     public boolean isActive() {
         return active;
     }
@@ -90,12 +95,12 @@ public class BettingCard {
         this.active = active;
     }
 
-    public String getTime() {
-        return time;
+    public String getDueDate() {
+        return dueDate;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setDueDate(String dueDate) {
+        this.dueDate = dueDate;
     }
 
     public boolean isRepeating() {
@@ -104,6 +109,14 @@ public class BettingCard {
 
     public void setRepeating(boolean repeating) {
         this.repeating = repeating;
+    }
+
+    public List<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<String> tags) {
+        this.tags = tags;
     }
 }
 
