@@ -1,4 +1,4 @@
-package com.sexydari.betriush;
+package examples;
 
 import java.util.concurrent.atomic.AtomicLong;
 

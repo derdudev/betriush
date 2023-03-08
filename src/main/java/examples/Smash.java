@@ -1,4 +1,4 @@
-package com.sexydari.betriush;
+package examples;
 
 public class Smash {
     private final String smash;

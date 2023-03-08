@@ -1,4 +1,4 @@
-package com.sexydari.betriush;
+package examples;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,7 +25,7 @@ public class GreetingController {
     @PostMapping("/greeting")
     public String greetingPost(@RequestBody Greeting body, HttpServletResponse response, @CookieValue(name = "color", required = false) String color, Model model){
         model.addAttribute("name", body.getContent());
-        response.addCookie(new Cookie("color", "black"));
+        response.addCookie(new Cookie("color", "blue"));
         System.out.println(color);
         return "greeting";
     }

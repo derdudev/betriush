@@ -1,7 +1,12 @@
-package com.sexydari.betriush;
+package examples;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document("users")
 public class Greeting {
 
+    @Id
     private final long id;
     private final String content;
 
