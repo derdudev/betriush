@@ -1,5 +1,7 @@
 package com.sexydari.betriush;
 
+import org.bson.types.ObjectId;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,7 +19,7 @@ public class InitDataController {
     @ResponseBody
     public InitDataResponse initData(){
         int preLength = userRepository.findAll().size();
-        userRepository.save(new User("123", "long", "admin"));
+        userRepository.save(new User(new ObjectId("6405e1e6816213e3e62e8b51"), "long", "admin"));
         int postLength = userRepository.findAll().size();
 
         InitDataResponse res = new InitDataResponse(true, preLength != postLength);

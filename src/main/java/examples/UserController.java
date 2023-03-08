@@ -2,6 +2,7 @@ package examples;
 
 import java.util.List;
 
+import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +24,7 @@ public class UserController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     public List<User> getAllUsers() {
         LOG.info("Getting all users.");
-        //userRepository.save(new User("124", "long", "admin"));
+        userRepository.save(new User("123", "long", "admin"));
         return userRepository.findAll();
     }
 }

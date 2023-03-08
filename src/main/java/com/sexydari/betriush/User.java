@@ -1,26 +1,27 @@
 package com.sexydari.betriush;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document("users")
 public class User {
     @Id
-    private String userId;
+    private ObjectId userId;
     private String name;
     private String role;
 
-    public User(String userId, String name, String role) {
+    public User(ObjectId userId, String name, String role) {
         this.userId = userId;
         this.name = name;
         this.role = role;
     }
 
-    public String getUserId() {
+    public ObjectId getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(ObjectId userId) {
         this.userId = userId;
     }
 
