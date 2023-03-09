@@ -1,4 +1,4 @@
-package com.sexydari.betriush;
+package com.sexydari.betriush.mongodb;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;

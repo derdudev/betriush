@@ -1,6 +1,5 @@
-package com.sexydari.betriush;
+package com.sexydari.betriush.mongodb;
 
-import java.util.ArrayList;
 import java.util.List;
 
 

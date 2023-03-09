@@ -1,4 +1,4 @@
-package com.sexydari.betriush;
+package com.sexydari.betriush.mongodb;
 
 public class InitDataResponse {
     private final boolean success;

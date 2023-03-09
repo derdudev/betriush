@@ -1,4 +1,4 @@
-package com.sexydari.betriush;
+package com.sexydari.betriush.mongodb;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
