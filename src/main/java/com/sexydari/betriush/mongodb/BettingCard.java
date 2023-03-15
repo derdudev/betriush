@@ -5,11 +5,22 @@ import java.util.List;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+import com.sexydari.betriush.mongodb.BettingOption;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document("betting-cards")
+//Annotation
+@Data
+//@NoArgsConstructor
+//@AllArgsConstructor
+
+@Document(collection = "betting-cards") //vorher: BettingCards
+
+//Class
 public class BettingCard {
     @Id
     @JsonSerialize(using = ToStringSerializer.class) // see: https://github.com/MaBeuLux88/java-spring-boot-mongodb-starter/blob/master/src/main/java/com/mongodb/starter/models/Person.java#L16-L17
@@ -47,6 +58,9 @@ public class BettingCard {
 
     }
 
+
+
+    // Getter and Setter
     public ObjectId getId() {
         return id;
     }
