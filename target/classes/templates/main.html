@@ -5,6 +5,55 @@
     <title>Betriush</title>
 </head>
 <body>
-    This. is. BETRIUSH!!!
+    Betting-Cards:
+    <span id="betting-cards-container">
+
+    </span>
+
+    <script>
+        const bettingCardsContainer = document.getElementById("betting-cards-container");
+
+        fetch("/cards", {
+            method: "GET",
+        }).then(val => val.json())
+            .then(data => {
+                var body = document.body;
+                var element, title, description;
+                for (let i = 0; i < data.length; i++) {
+                    element = document.createElement("div");
+                    element.className = "betting-card-container";
+                    title = document.createElement("h3");
+                    title.textContent = data[i]["title"];
+                    description = document.createElement("p");
+                    description.textContent = data[i]["description"];
+                    element.append(title);
+                    element.append(description);
+                    bettingCardsContainer.append(element);
+                }
+            });
+    </script>
+    <style>
+        *{
+            font-family: monospace;
+        }
+
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+
+            width: 100vw;
+            height: 100vh;
+
+            overflow: hidden;
+        }
+
+        .betting-card-container{
+            border: black solid 2px;
+            padding: 0px 20px;
+            margin: 5px;
+        }
+    </style>
 </body>
 </html>
