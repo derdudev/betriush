@@ -1,17 +1,24 @@
 package com.sexydari.betriush.mongodb;
 
+
+
 import com.sexydari.betriush.exception.ResourceNotFoundException;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 //Annotation
+
+//@CrossOrigin(origins= "http://localhost:8081"
 
 @RestController
 public class BettingCardController {
@@ -26,6 +33,14 @@ public class BettingCardController {
     //CRUD-Operations
 
     //CREATE
+    @PostMapping("/betting-cards") //works
+    public BettingCard createBettingCard(@RequestBody BettingCard bettingCard){
+        bettingCard.setId(new ObjectId());
+        return bettingCardRepo.save(bettingCard);
+    }
+
+
+
 
     //READ
     // Just a tester Mapping to see if anything is returned
@@ -35,13 +50,13 @@ public class BettingCardController {
     }
 
 
-    @GetMapping("/getcards") //Works :)
+    @GetMapping("/betting-cards") //Works :)
     public ResponseEntity <List<BettingCard>> getBettingCards(){
 
         return ResponseEntity.ok().body(bettingCardRepo.findAll());
     }
 
-    @GetMapping("/getcards/{id}") // Works :)
+    @GetMapping("/betting-cards/{id}") // Works :)
     public ResponseEntity <BettingCard> getBettingCardById(@PathVariable(value="id") ObjectId id)
             throws ResourceNotFoundException {
         BettingCard bettingCard = bettingCardRepo.findById(id)
@@ -87,8 +102,34 @@ public class BettingCardController {
 
 
     //UPDATE
+    @PutMapping("/betting-cards/{id}") //works
+    public ResponseEntity <BettingCard> updateBettingCard(@PathVariable(value = "id") ObjectId id, @Validated @RequestBody BettingCard bettingCardDetails)
+        throws ResourceNotFoundException{
+        BettingCard bettingCard = bettingCardRepo.findById(id).orElseThrow(()-> new ResourceNotFoundException("No card with this ID:: "+ id));
+        //Set new values
+        bettingCard.setTitle(bettingCardDetails.getTitle());
+        bettingCard.setDescription(bettingCardDetails.getDescription());
+        bettingCard.setBettingOptions(bettingCardDetails.getBettingOptions());
+        bettingCard.setActive(bettingCardDetails.isActive());
+        bettingCard.setDueDate(bettingCardDetails.getDueDate());
+        bettingCard.setRepeating(bettingCardDetails.isRepeating());
+        bettingCard.setTags(bettingCardDetails.getTags());
 
+        final BettingCard updatedBettingCard = bettingCardRepo.save(bettingCard);
+        return ResponseEntity.ok(updatedBettingCard);
+    }
 
     //DELETE
+    @DeleteMapping("/betting-cards/{id}") //works too
+    public Map<String, Boolean> deleteEmployee(@PathVariable(value = "id") ObjectId id)
+        throws ResourceNotFoundException{
+        BettingCard bettingCard = bettingCardRepo.findById(id).orElseThrow(()-> new ResourceNotFoundException("No card with this Id::" + id));
+        bettingCardRepo.delete(bettingCard);
+        Map <String, Boolean> response = new HashMap< >();
+        response.put("deleted", Boolean.TRUE);
+        return response;
+    }
+
+
 
 }
