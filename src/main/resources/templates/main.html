@@ -5,12 +5,38 @@
     <title>Betriush</title>
 </head>
 <body>
-    This. is. BETRIUSH!!!
+This. is. BETRIUSH!!!
 
-    <script>
-        fetch("/betting-cards", {
-           method: "GET",
+<script>
+    fetch("/betting-cards", {
+        method: "GET",
+    }).then(val => val.json())
+        .then(data => {
+            var body = document.body;
+            var element, title, description;
+            for (let i = 0; i < data.length; i++) {
+                element = document.createElement("div");
+                title = document.createElement("h3");
+                title.textContent = data[i]["title"];
+                description = document.createElement("p");
+                description.textContent = data[i]["description"];
+                element.append(title);
+                element.append(description);
+                body.append(element);
+            }
         });
-    </script>
+</script>
+<style>
+    body{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 100vw;
+        height: 100vh;
+
+        overflow: hidden;
+    }
+</style>
 </body>
 </html>
