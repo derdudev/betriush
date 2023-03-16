@@ -35,9 +35,8 @@ public class BetriushApplication implements CommandLineRunner{
 		bettingCardRepository.save(new BettingCard(
 				(new ObjectId("6405e1e6816213e3e62e8c50")), (new ObjectId("6505f1e6816213e3e62e8b52")), "Lin Alg ZÜ wird gottloser", "Ja ihr wisst schon", new ArrayList<>(), true, "11.03.2023",true,new ArrayList<>() ));
 
-		System.out.println("On some new bullshit");
-
 	}
+	/*
 	@Bean
 	public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
 		return args -> {
@@ -52,10 +51,5 @@ public class BetriushApplication implements CommandLineRunner{
 
 		};
 	}
-
-
-
-
-
-
+	 */
 }

@@ -35,14 +35,14 @@ public class BettingCardController {
     }
 
 
-    @GetMapping("/getcards") //Works :)
-    public ResponseEntity <List<BettingCard>> getBettingCards(){
+    @GetMapping("/cards") //Works :)
+    public ResponseEntity<List<BettingCard>> getBettingCards(){
 
         return ResponseEntity.ok().body(bettingCardRepo.findAll());
     }
 
-    @GetMapping("/getcards/{id}") // Works :)
-    public ResponseEntity <BettingCard> getBettingCardById(@PathVariable(value="id") ObjectId id)
+    @GetMapping("/cards/{id}") // Works :)
+    public ResponseEntity<BettingCard> getBettingCardById(@PathVariable(value="id") ObjectId id)
             throws ResourceNotFoundException {
         BettingCard bettingCard = bettingCardRepo.findById(id)
                 .orElseThrow(()-> new ResourceNotFoundException("No Betting Card found for this id"));
@@ -72,10 +72,8 @@ public class BettingCardController {
     void getAllBettingCards(){
         System.out.println("Get all bettings cards");
         bettingCardRepo.findAll().forEach(card-> System.out.println(getCardDetails(card)));
-
     }
     public String getCardDetails(BettingCard card) {
-
         System.out.println(
                 "Card-Id: " + card.getId() +
                         ", \nCard Title: " + card.getTitle()
