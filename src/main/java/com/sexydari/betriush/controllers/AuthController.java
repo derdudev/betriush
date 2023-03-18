@@ -70,10 +70,15 @@ public class AuthController {
            return userRoleRepository.findByName(i);
         }).collect(Collectors.toList());
 
-        User user = new User(signupRequest.getUsername(), signupRequest.getEmail(), encoder.encode(signupRequest.getPassword()), userRoles);
+        User user = new User(new ObjectId(), signupRequest.getUsername(), signupRequest.getEmail(), encoder.encode(signupRequest.getPassword()), userRoles);
 
         userRepository.save(user);
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+    }
+
+    @GetMapping("/test")
+    public String test(){
+        return "test";
     }
 }

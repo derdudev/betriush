@@ -28,6 +28,7 @@ public class User {
     @DBRef(lazy = true)
     private List<UserRoleModel> roles;
 
+    /*
     public User(String username, String email, String password, List<UserRoleModel> roles) {
         this.userId = new ObjectId();
         this.username = username;
@@ -35,6 +36,8 @@ public class User {
         this.password = password;
         this.roles = roles;
     }
+
+     */
 
     public User(ObjectId userId, String username, String email, String password, List<UserRoleModel> roles) {
         this.userId = userId;

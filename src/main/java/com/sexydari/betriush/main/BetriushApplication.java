@@ -18,7 +18,7 @@ import com.sexydari.betriush.mongodb.repositories.BettingCardRepository;
 import java.util.ArrayList;
 
 // Specified Packages to be scanned
-@SpringBootApplication(scanBasePackages = {"com.sexydari.betriush.main", "com.sexydari.betriush.mongodb.models", "com.sexydari.betriush.mongodb.repositories","com.sexydari.betriush.mongodb", "com.sexydari.betriush.auth"}, exclude = { SecurityAutoConfiguration.class })
+@SpringBootApplication(scanBasePackages = {"com.sexydari.betriush.main", "com.sexydari.betriush.mongodb.models", "com.sexydari.betriush.mongodb.repositories","com.sexydari.betriush.mongodb", "com.sexydari.betriush.auth", "com.sexydari.betriush.controllers"}, exclude = { SecurityAutoConfiguration.class })
 @EnableMongoRepositories(basePackageClasses = {BettingCardRepository.class,  UserRepository.class, UserRoleRepository.class})
 // Implements CommandLineRunner, to see what's going on
 public class BetriushApplication implements CommandLineRunner{
