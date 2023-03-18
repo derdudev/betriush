@@ -5,71 +5,37 @@
     <title>Betriush</title>
 </head>
 <body>
-    Betting-Cards:
-    <span id="betting-cards-container">
-
-    </span>
+    This. is. BETRIUSH!!!
 
     <script>
-        const bettingCardsContainer = document.getElementById("betting-cards-container");
-
-        fetch("/cards", {
+        fetch("/betting-cards", {
             method: "GET",
         }).then(val => val.json())
             .then(data => {
                 var body = document.body;
-                var element, title, description, betBtn;
+                var element, title, description;
                 for (let i = 0; i < data.length; i++) {
                     element = document.createElement("div");
-                    element.className = "betting-card-container";
                     title = document.createElement("h3");
                     title.textContent = data[i]["title"];
                     description = document.createElement("p");
                     description.textContent = data[i]["description"];
-                    betBtn = document.createElement("button");
-                    betBtn.innerText = "Bet";
-                    betBtn.onclick = () => {
-                        fetch("/bet",{
-                            method: "POST",
-                            body: JSON.stringify({
-                                uid: "6405e1e6816213e3e62e8b51", // user-id
-                                cid: "6405e1e6816213e3e62e8b50", // card-id
-                                option: 0, // index of option in its betting-card bettingOptions property
-                                amount: 200,
-
-                            })
-                        }).then(res => res.json()).then(resData => {
-
-                        });
-                    }
                     element.append(title);
                     element.append(description);
-                    element.append(betBtn);
-                    bettingCardsContainer.append(element);
+                    body.append(element);
                 }
             });
     </script>
     <style>
-        *{
-            font-family: monospace;
-        }
-
         body{
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-direction: column;
 
             width: 100vw;
             height: 100vh;
 
             overflow: hidden;
-        }
-
-        .betting-card-container{
-            border: black solid 2px;
-            padding: 0px 20px 10px 20px;
-            margin: 5px;
         }
     </style>
 </body>

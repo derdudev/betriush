@@ -1,6 +1,8 @@
 package com.sexydari.betriush.mongodb;
 
 import com.sexydari.betriush.exception.ResourceNotFoundException;
+import com.sexydari.betriush.mongodb.models.BettingCard;
+import com.sexydari.betriush.mongodb.repositories.BettingCardRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,6 +15,7 @@ import java.util.List;
 
 //Annotation
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 public class BettingCardController {
     /*@GetMapping(value="/betting-cards")
@@ -37,7 +40,8 @@ public class BettingCardController {
 
     @GetMapping("/cards") //Works :)
     public ResponseEntity<List<BettingCard>> getBettingCards(){
-
+        System.out.println("test");
+        System.out.println(bettingCardRepo.findAll());
         return ResponseEntity.ok().body(bettingCardRepo.findAll());
     }
 

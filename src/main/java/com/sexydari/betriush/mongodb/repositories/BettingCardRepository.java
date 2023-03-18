@@ -1,7 +1,8 @@
-package com.sexydari.betriush.mongodb;
+package com.sexydari.betriush.mongodb.repositories;
 
 import java.util.List;
 
+import com.sexydari.betriush.mongodb.models.BettingCard;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;

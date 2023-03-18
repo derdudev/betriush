@@ -1,24 +1,25 @@
 package com.sexydari.betriush.main;
 
-import com.sexydari.betriush.mongodb.*;
-
+import com.sexydari.betriush.mongodb.models.BettingCard;
+import com.sexydari.betriush.mongodb.models.UserRole;
+import com.sexydari.betriush.mongodb.repositories.UserRepository;
+import com.sexydari.betriush.mongodb.repositories.UserRoleRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
-import com.sexydari.betriush.mongodb.BettingCardRepository;
+import com.sexydari.betriush.mongodb.repositories.BettingCardRepository;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 // Specified Packages to be scanned
-@SpringBootApplication(scanBasePackages = {"com.sexydari.betriush.main", "com.sexydari.betriush.mongodb.model", "com.sexydari.betriush.mongodb.repository","com.sexydari.betriush.mongodb"})
-@EnableMongoRepositories(basePackageClasses = {BettingCardRepository.class,  UserRepository.class})
+@SpringBootApplication(scanBasePackages = {"com.sexydari.betriush.main", "com.sexydari.betriush.mongodb.models", "com.sexydari.betriush.mongodb.repositories","com.sexydari.betriush.mongodb", "com.sexydari.betriush.auth"}, exclude = { SecurityAutoConfiguration.class })
+@EnableMongoRepositories(basePackageClasses = {BettingCardRepository.class,  UserRepository.class, UserRoleRepository.class})
 // Implements CommandLineRunner, to see what's going on
 public class BetriushApplication implements CommandLineRunner{
 	@Autowired

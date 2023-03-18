@@ -1,4 +1,4 @@
-package com.sexydari.betriush.mongodb;
+package com.sexydari.betriush.mongodb.models;
 
 public class BettingOption {
     private String title;
