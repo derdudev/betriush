@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BettingCardRepository extends MongoRepository<BettingCard, ObjectId> {
     @Query("{'id': '?0'}")
-    List<BettingCard> findAll(int id);
+
 
     List<BettingCard> findByTitleContaining(String title);
 
