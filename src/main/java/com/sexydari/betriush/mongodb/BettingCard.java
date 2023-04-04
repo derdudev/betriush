@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import com.sexydari.betriush.mongodb.BettingOption;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.bson.types.ObjectId;
@@ -19,6 +20,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 //@AllArgsConstructor
 
 @Document(collection = "betting-cards") //vorher: BettingCards
+@Builder
+
 
 //Class
 public class BettingCard {

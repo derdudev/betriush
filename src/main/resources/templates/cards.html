@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> <!-- Using xmlns:th prevents IDE from complaining about th:* later on -->
+<head>
+    <meta charset="UTF-8">
+    <title>All Cards</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous">
+    <link th:href="@{/static/main.css}" rel="stylesheet" />
+
+</head>
+<body>
+    <script th:inline="javascript">
+    /*<![CDATA[*/
+
+    var cards = /*[[${cards}]]*/ 'default';
+    console.log(cards);
+
+    /*]]>*/
+</script>
+<script type="text/javascript" th:src="@{/static/actions.js}"></script>
+    <div th:replace="fragments/header :: header"></div>
+
+    <div class="container">
+      <div class="row">
+          <a th:href="@{/new-card}" class="btn btn-primary btn-sm mb-3">Add Card</a>
+      </div>
+      <div class="row">
+          <h1>All Cards</h1>
+          <p>This text is <strong>purely for testing</strong></p>
+          <button type="button" th:onclick="showAlert()">Show Alert</button>
+          <button type="button" th:onclick="showName(cards.isEmpty())">{cards.isEmpty()}</button>
+      </div>
+      <div class="row">
+          <div class ="col-md-6">
+              <table class="table">
+              <thead>
+                  <tr>
+                      <!--
+                      <th>Id</th>
+                      -->
+                      <th>Titel</th>
+                      <th>Active</th>
+                      <th>Description</th>
+                      <th>Betting Options</th>
+                      <th>Due Date</th>
+                      <th>Tags</th>
+                  </tr>
+
+              </thead>
+              <tbody>
+                <tr th:if="${cards.isEmpty()}">
+                    <td colspan="2">No active bets</td>
+
+                </tr>
+
+
+                <tr th:each="card: ${cards}">
+                  <td th:text="${card.title}"/>
+                    <td th:text="${card.active}"/>
+                    <td th:text="${card.description}"/>
+                    <td th:text="${card.bettingOptions}"/>
+                    <td th:text="${card.dueDate}"/>
+                    <td th:text="${card.tags}"/>
+                    <td>
+                        <a th:href="@{/edit-card/{id}(id=${card.id})}">
+                            <button type="button" class="btn btn-primary"> Edit </button>
+
+                        </a>
+
+                    </td>
+
+
+                    <!--<span th:text="${cards}"/>
+                    <span th:text="${serverTime}"/>
+                     -->
+
+
+              </tr>
+
+
+              </tbody>
+          </table>
+          </div>
+
+      </div>
+
+
+
+  </div>
+
+
+</body>
+</html>
