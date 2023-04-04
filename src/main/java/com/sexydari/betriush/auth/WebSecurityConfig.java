@@ -61,7 +61,7 @@ public class WebSecurityConfig {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests().antMatchers("/api/auth/**").permitAll()
                 .antMatchers("/api/test/**").permitAll()
-                .antMatchers("/").permitAll()
+                .antMatchers("/").permitAll() // antMatchers accepts list of String routes! -> Split into authorizedRoutes & permittedRoutes
                 .antMatchers("/cards").authenticated()
                 .anyRequest().authenticated();
 
